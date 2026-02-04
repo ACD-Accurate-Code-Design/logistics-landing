@@ -16,7 +16,7 @@ export default function Coverage() {
                 Strong partner network, multiple routes, and reliable delivery operations.
               </p>
 
-              <div className="mt-8 grid grid-cols-3 gap-3 sm:gap-4">
+              <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
                 <div className="rounded-2xl border border-[rgb(var(--border))] bg-[rgb(var(--bg))] p-4">
                   <p className="text-xl font-extrabold"><Counter to={120} suffix="+" /></p>
                   <p className="text-xs sm:text-sm text-[rgb(var(--muted))]">Fleet partners</p>
@@ -81,7 +81,7 @@ export default function Coverage() {
                   ))}
 
                   <div className="absolute left-4 right-4 bottom-4 rounded-2xl border border-[rgb(var(--border))] bg-[rgb(var(--bg))] p-4">
-                    <div className="flex items-center justify-between">
+                    <div className="flex flex-wrap items-center justify-between">
                       <p className="text-sm font-semibold">Shipments in transit</p>
                       <p className="text-sm text-[rgb(var(--muted))]">
                         <Counter to={38} /> active
@@ -93,7 +93,7 @@ export default function Coverage() {
                   </div>
                 </div>
 
-                <div className="mt-4 grid grid-cols-2 gap-3 sm:gap-4">
+                <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
                   <Mini label="Avg. ETA accuracy" value="High" />
                   <Mini label="Proof of delivery" value="Available" />
                 </div>

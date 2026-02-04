@@ -21,7 +21,7 @@ export default function WhyUs() {
             </p>
           </MotionIn>
 
-          <div className="mt-8 grid grid-cols-2 gap-4">
+          <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             <MotionIn delay={0.08} from="bottom">
               <div className="rounded-3xl border border-[rgb(var(--border))] bg-[rgb(var(--card))] p-6">
                 <p className="text-2xl font-extrabold"><Counter to={98} suffix="%" /></p>

@@ -13,7 +13,7 @@ export default function Contact() {
                 Share shipment details and we’ll respond quickly.
               </p>
 
-              <div className="mt-8 grid grid-cols-2 gap-4">
+              <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
                 <Info label="Phone" value="+91 98XXXXXX10" />
                 <Info label="Email" value="hello@logiswift.in" />
                 <Info label="Hours" value="Mon–Sat • 9am–7pm" />

@@ -92,7 +92,7 @@ export default function Hero() {
               </div>
             </div>
 
-            <div className="relative mt-5 sm:mt-6 grid grid-cols-2 gap-3 sm:gap-4">
+            <div className="relative mt-10 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
               {[
                 ["Same-day dispatch", "For urgent shipments"],
                 ["Secure handling", "Insured cargo support"],
