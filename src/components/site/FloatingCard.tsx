@@ -1,18 +1,28 @@
 "use client";
 
 import { motion, useMotionValue, useSpring } from "framer-motion";
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 export default function FloatingCard({
   children,
   className = "",
-  intensity = 10, // tilt amount
+  intensity = 10,
 }: {
   children: React.ReactNode;
   className?: string;
   intensity?: number;
 }) {
   const ref = useRef<HTMLDivElement | null>(null);
+  const [enabled, setEnabled] = useState(true);
+
+  useEffect(() => {
+    // Disable tilt on touch devices (prevents layout jitter / misalignment)
+    const mq = window.matchMedia("(pointer: coarse)");
+    const apply = () => setEnabled(!mq.matches);
+    apply();
+    mq.addEventListener?.("change", apply);
+    return () => mq.removeEventListener?.("change", apply);
+  }, []);
 
   const rx = useMotionValue(0);
   const ry = useMotionValue(0);
@@ -25,19 +35,22 @@ export default function FloatingCard({
   const sty = useSpring(ty, { stiffness: 160, damping: 18 });
 
   function onMove(e: React.MouseEvent<HTMLDivElement>) {
+    if (!enabled) return;
     const el = ref.current;
     if (!el) return;
+
     const r = el.getBoundingClientRect();
     const px = (e.clientX - r.left) / r.width; // 0..1
     const py = (e.clientY - r.top) / r.height; // 0..1
 
-    // tilt
-    ry.set((px - 0.5) * intensity);
-    rx.set(-(py - 0.5) * intensity);
+    const tilt = intensity;
+    const move = 6; // keep small so it never breaks grid alignment
 
-    // subtle translate
-    tx.set((px - 0.5) * 10);
-    ty.set((py - 0.5) * 10);
+    ry.set((px - 0.5) * tilt);
+    rx.set(-(py - 0.5) * tilt);
+
+    tx.set((px - 0.5) * move);
+    ty.set((py - 0.5) * move);
   }
 
   function onLeave() {
@@ -53,13 +66,14 @@ export default function FloatingCard({
       onMouseMove={onMove}
       onMouseLeave={onLeave}
       style={{
-        rotateX: srx,
-        rotateY: sry,
-        x: stx,
-        y: sty,
+        rotateX: enabled ? srx : 0,
+        rotateY: enabled ? sry : 0,
+        x: enabled ? stx : 0,
+        y: enabled ? sty : 0,
         transformStyle: "preserve-3d",
+        perspective: 1000,
       }}
-      className={`will-change-transform ${className}`}
+      className={`w-full min-w-0 ${className}`}
     >
       {children}
     </motion.div>

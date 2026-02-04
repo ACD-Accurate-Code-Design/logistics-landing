@@ -52,7 +52,7 @@ export default function Hero() {
             </div>
           </MotionIn>
 
-          <div className="mt-10 grid grid-cols-3 gap-3 sm:gap-4">
+          <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
             <MotionIn delay={0.22} from="bottom">
               <Stat value={<><Counter to={10} suffix="k+" /></>} label="Deliveries" />
             </MotionIn>
