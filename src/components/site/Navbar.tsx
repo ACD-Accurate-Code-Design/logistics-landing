@@ -74,7 +74,6 @@ export default function Navbar() {
           </div>
         </div>
       </header>
-
       <MobileMenu open={open} onClose={() => setOpen(false)} />
     </>
   );
